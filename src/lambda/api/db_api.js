@@ -70,6 +70,7 @@ const internalMongoApi = db => ({
     db
       .collection("trips")
       .aggregate([
+        { $match: { timestamp: { $gt: 435820}}},
         { $group: { _id: "$userId", distance: { $sum: "$distance" } } },
         { $sort: { distance: -1 } },
         { $limit: 20 },
